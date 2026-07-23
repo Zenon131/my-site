@@ -30,14 +30,14 @@
 				<h1 class="text-3xl font-bold text-zinc-100">{post.title}</h1>
 			</header>
 
-			<Card class="border-zinc-800 bg-zinc-900/30 p-8">
+			<Card class="border-zinc-800 bg-zinc-900/30 p-8 glassy-container">
 				<div class="prose prose-invert prose-zinc max-w-none">
 					{@html post.content}
 				</div>
 			</Card>
 		</article>
 	{:else}
-		<Card class="border-zinc-800 bg-zinc-900/30 p-8 text-center">
+		<Card class="border-zinc-800 bg-zinc-900/30 p-8 text-center glassy-container">
 			<h2 class="text-xl font-semibold text-zinc-100 mb-2">Post not found</h2>
 			<p class="text-zinc-400 mb-4">This post doesn't exist or has been removed.</p>
 			<a href="/#updates">

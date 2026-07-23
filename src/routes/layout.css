@@ -84,6 +84,13 @@
 	--radius-4xl: calc(var(--radius) * 2.6);
 }
 
+.glassy-container {
+	background-color: oklch(var(--card) / 0.8);
+	backdrop-filter: blur(8px);
+	border: 1px solid oklch(var(--border) / 0.5);
+	border-radius: var(--radius);
+}
+
 @layer base {
 	* {
 		@apply border-border outline-ring/50;

@@ -97,7 +97,7 @@
 <section id="about" class="mx-auto max-w-3xl scroll-mt-20 px-6 py-16">
 	<h2 class="mb-6 text-2xl font-semibold text-zinc-100">About</h2>
 
-	<Card class="border-zinc-800 bg-zinc-900/30 p-6">
+	<Card class="glassy-container border-zinc-800 bg-zinc-900/30 p-6">
 		<div class="space-y-4 leading-relaxed text-zinc-300">
 			<p>
 				I'm a bioengineering student at the <a
@@ -144,7 +144,7 @@
 	<h2 class="mb-6 text-2xl font-semibold text-zinc-100">Some GitHub Projects</h2>
 
 	{#if projects.length === 0}
-		<Card class="border-zinc-800 bg-zinc-900/30 p-6 text-center">
+		<Card class="glassy-container border-zinc-800 bg-zinc-900/30 p-6 text-center">
 			<p class="text-zinc-400">
 				No projects to show yet. Edit <code class="text-zinc-300">src/lib/data.ts</code> to add your featured
 				repos.
@@ -153,7 +153,7 @@
 	{:else}
 		<div class="grid gap-4 md:grid-cols-2">
 			{#each projects as project}
-				<Card class="border-zinc-800 bg-zinc-900/30 p-5 transition-colors hover:bg-zinc-900/50">
+				<Card class="glassy-container border-zinc-800 bg-zinc-900/30 p-5 transition-colors hover:bg-zinc-900/50">
 					<div class="flex h-full flex-col">
 						<div class="mb-2 flex items-start justify-between">
 							<a
@@ -206,7 +206,7 @@
 	<h2 class="mb-6 text-2xl font-semibold text-zinc-100">Updates</h2>
 
 	{#if blogPosts.length === 0}
-		<Card class="border-zinc-800 bg-zinc-900/30 p-6 text-center">
+		<Card class="glassy-container border-zinc-800 bg-zinc-900/30 p-6 text-center">
 			<p class="text-zinc-400">
 				No updates yet. Edit <code class="text-zinc-300">src/lib/data.ts</code> to add blog posts.
 			</p>
@@ -214,7 +214,7 @@
 	{:else}
 		<div class="space-y-4">
 			{#each blogPosts as post}
-				<Card class="border-zinc-800 bg-zinc-900/30 p-5 transition-colors hover:bg-zinc-900/50">
+				<Card class="glassy-container border-zinc-800 bg-zinc-900/30 p-5 transition-colors hover:bg-zinc-900/50">
 					<a href="/updates/{post.slug}" class="block">
 						<div class="mb-2 flex items-start justify-between">
 							<h3 class="text-lg font-medium text-zinc-100 transition-colors hover:text-white">

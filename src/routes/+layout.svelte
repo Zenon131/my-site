@@ -12,7 +12,7 @@
 
 <div class="min-h-screen bg-zinc-950 text-zinc-200">
 	<nav
-		class="fixed top-0 right-0 left-0 z-50 border-b border-zinc-800/50 bg-zinc-950/80 backdrop-blur-sm"
+		class="fixed top-0 right-0 left-0 z-50 border-b border-zinc-800/50 glassy-container"
 	>
 		<div class="mx-auto flex max-w-3xl items-center justify-between px-6 py-4">
 			<a href="/" class="text-lg font-semibold text-zinc-100 transition-colors hover:text-white">
