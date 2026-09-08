@@ -3,10 +3,11 @@
 	import { Card } from '$lib/components/ui/card';
 	import { blogPosts, getPostBySlug } from '$lib/data';
 	import { page } from '$app/stores';
+	import { ArrowLeft } from '@lucide/svelte';
 
 	let { data } = $props();
 
-	const post = getPostBySlug($page.params.slug);
+	const post = getPostBySlug($page.params.slug as string);
 </script>
 
 <svelte:head>
@@ -15,10 +16,11 @@
 
 <div class="mx-auto max-w-3xl px-6 py-12">
 	<a href="/#updates">
-		<Button variant="ghost" class="text-zinc-400 hover:text-zinc-200 mb-8 -ml-2">
-			<svg class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-			</svg>
+		<Button
+			variant="ghost"
+			class="mb-8 -ml-2 text-muted-foreground hover:bg-secondary hover:text-foreground"
+		>
+			<ArrowLeft class="mr-1 h-4 w-4" />
 			Back to updates
 		</Button>
 	</a>
@@ -26,22 +28,25 @@
 	{#if post}
 		<article>
 			<header class="mb-8">
-				<span class="text-sm text-zinc-500 mb-2 block">{post.date}</span>
-				<h1 class="text-3xl font-bold text-zinc-100">{post.title}</h1>
+				<span class="mb-2 block font-mono text-sm text-muted-foreground">{post.date}</span>
+				<h1 class="text-3xl font-bold tracking-tight text-foreground">{post.title}</h1>
 			</header>
 
-			<Card class="border-zinc-800 bg-zinc-900/30 p-8">
-				<div class="prose prose-invert prose-zinc max-w-none">
+			<Card class="border-border/60 bg-card/50 p-8 backdrop-blur-sm">
+				<div class="prose max-w-none prose-zinc prose-invert">
 					{@html post.content}
 				</div>
 			</Card>
 		</article>
 	{:else}
-		<Card class="border-zinc-800 bg-zinc-900/30 p-8 text-center">
-			<h2 class="text-xl font-semibold text-zinc-100 mb-2">Post not found</h2>
-			<p class="text-zinc-400 mb-4">This post doesn't exist or has been removed.</p>
+		<Card class="border-border/60 bg-card/50 p-8 text-center backdrop-blur-sm">
+			<h2 class="mb-2 text-xl font-semibold text-foreground">Post not found</h2>
+			<p class="mb-4 text-muted-foreground">This post doesn't exist or has been removed.</p>
 			<a href="/#updates">
-				<Button variant="outline" class="border-zinc-700 bg-zinc-900/50 hover:bg-zinc-800 text-zinc-200">
+				<Button
+					variant="outline"
+					class="border-border/60 bg-card/50 text-foreground hover:bg-card/80 hover:text-primary"
+				>
 					Back to updates
 				</Button>
 			</a>

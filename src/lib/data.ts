@@ -70,7 +70,14 @@ export const blogPosts: BlogPost[] = [
 		slug: 'the-pitch-by-deel',
 		content: `<p>I recently got the opportunity to attend The Pitch by Deel, hosted and presented by JP Morgan in New York City. I was able to pitch my venture, Engram, to a slew of investors and stakeholders and received positive feedback, including 2 very interested investors.</p>
 <p>This was an incredible experience to network with other founders, learn from experienced investors, and practice pitching in a high-stakes environment. Looking forward to following up with the investors who expressed interest.</p>`
-	},
+  },
+  {
+    title: 'BASE Accelerator',
+    date: '2026-09-01',
+    excerpt: 'I have been accepted into the BASE Accelerator program, which begins in October.',
+    slug: 'base-accelerator',
+    content: 'I have been accepted into the BASE Accelerator program, which begins in October. This is a truly monumental opportunity to accelerate your startup journey and get legal guidance from experienced investors and lawyers from the field. I am tremendously grateful for the opportunity to be part of this program and to grow Engram into a the personal intelligence platform that I believe it will become.'
+  }
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {

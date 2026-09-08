@@ -1,117 +1,118 @@
 <script lang="ts">
 	import { Avatar } from '$lib/components/ui/avatar';
-	import { Button } from '$lib/components/ui/button';
-	import { Card } from '$lib/components/ui/card';
 	import { Badge } from '$lib/components/ui/badge';
 	import { Separator } from '$lib/components/ui/separator';
+	import { Button } from '$lib/components/ui/button';
 	import { user, projects, blogPosts } from '$lib/data';
+	import ProjectCard from '$lib/components/ProjectCard.svelte';
+	import GitHubActivity from '$lib/components/GitHubActivity.svelte';
+	import GithubIcon from '$lib/components/icons/GithubIcon.svelte';
+	import { Newspaper, Mail, Globe, User, ArrowDown } from '@lucide/svelte';
+
+	const skills = [
+		'AI/ML',
+		'Bioengineering',
+		'Neuroscience',
+		'Web Development',
+		'Prosthetics',
+		'TypeScript',
+		'Python',
+		'Svelte'
+	];
+
+	const socials = [
+		{ href: 'https://github.com/Zenon131', label: 'GitHub', icon: GithubIcon },
+		{ href: 'https://www.engramartificial.com', label: 'Engram', icon: Globe },
+		{ href: 'mailto:jonozw@seas.upenn.edu', label: 'Email', icon: Mail }
+	];
 </script>
 
 <svelte:head>
 	<title>Jonathan Wallace</title>
 	<meta
 		name="description"
-		content="Bioengineering student at UPenn. AI/ML, neuroscience, web development."
+		content="Bioengineering + Neuroscience student at UPenn. AI/ML, neuroscience, web development, data science."
 	/>
 </svelte:head>
 
 <!-- Hero Section -->
-<section class="mx-auto max-w-3xl px-6 py-20">
+<section class="relative mx-auto max-w-5xl px-6 py-24 md:py-32">
 	<div class="flex flex-col items-center text-center">
-		<Avatar class="mb-6 h-32 w-32 ring-2 ring-zinc-800">
-			<img src={user.avatar} alt={user.name} class="object-cover" />
-		</Avatar>
+		<div class="relative mb-8">
+			<div
+				class="absolute inset-0 -m-2 rounded-full bg-gradient-to-tr from-primary via-accent to-neon-pink opacity-40 blur-xl"
+			></div>
+			<Avatar
+				class="relative h-32 w-32 ring-2 ring-primary/30 ring-offset-2 ring-offset-background"
+			>
+				<img src={user.avatar} alt={user.name} class="object-cover" />
+			</Avatar>
+		</div>
 
-		<h1 class="mb-2 text-4xl font-bold text-zinc-100">{user.name}</h1>
-		<p class="mb-6 text-lg text-zinc-400">@{user.username}</p>
+		<p class="mb-2 font-mono text-xs font-medium tracking-widest text-accent uppercase">
+			Bioengineering & Neuroscience
+		</p>
 
-		<p class="mb-8 max-w-xl leading-relaxed text-zinc-300">
+		<h1 class="mb-3 text-5xl font-bold tracking-tight text-foreground md:text-6xl">
+			{user.name}
+		</h1>
+		<p class="mb-6 font-mono text-sm text-muted-foreground">@{user.username}</p>
+
+		<p class="mb-10 max-w-xl text-lg leading-relaxed text-muted-foreground">
 			{user.bio}
 		</p>
 
-		<div class="flex flex-wrap justify-center gap-4">
-			<Button
-				variant="outline"
-				class="border-zinc-700 bg-zinc-900/50 text-zinc-200 hover:bg-zinc-800"
-			>
-				<a
-					href="https://github.com/Zenon131"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="flex items-center gap-2"
+		<div class="flex flex-wrap justify-center gap-3">
+			{#each socials as social}
+				<Button
+					variant="outline"
+					size="default"
+					href={social.href}
+					target={social.label === 'Email' ? undefined : '_blank'}
+					rel={social.label === 'Email' ? undefined : 'noopener noreferrer'}
+					class="border-border/60 bg-card/50 text-foreground backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-primary/50 hover:bg-card/80 hover:text-primary"
 				>
-					<svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-						<path
-							d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-						/>
-					</svg>
-					GitHub
-				</a>
-			</Button>
-
-			<Button
-				variant="outline"
-				class="border-zinc-700 bg-zinc-900/50 text-zinc-200 hover:bg-zinc-800"
-			>
-				<a
-					href="https://www.engramartificial.com"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="flex items-center gap-2"
-				>
-					<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
-						/>
-					</svg>
-					Engram Artificial
-				</a>
-			</Button>
-
-			<Button
-				variant="outline"
-				class="border-zinc-700 bg-zinc-900/50 text-zinc-200 hover:bg-zinc-800"
-			>
-				<a href="mailto:jonozw@seas.upenn.edu" class="flex items-center gap-2">
-					<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-						/>
-					</svg>
-					Email Me
-				</a>
-			</Button>
+					<social.icon class="mr-2 h-4 w-4" />
+					{social.label}
+				</Button>
+			{/each}
 		</div>
+
+		<a
+			href="#about"
+			class="mt-16 inline-flex animate-bounce items-center gap-2 text-xs text-muted-foreground transition-colors hover:text-primary"
+		>
+			<ArrowDown class="h-4 w-4" />
+			Explore
+		</a>
 	</div>
 </section>
 
-<Separator class="mx-auto max-w-3xl bg-zinc-800/50" />
+<Separator class="mx-auto max-w-5xl bg-border/50" />
 
 <!-- About Section -->
-<section id="about" class="mx-auto max-w-3xl scroll-mt-20 px-6 py-16">
-	<h2 class="mb-6 text-2xl font-semibold text-zinc-100">About</h2>
+<section id="about" class="mx-auto max-w-5xl scroll-mt-24 px-6 py-20">
+	<div class="mb-8 flex items-center gap-3">
+		<User class="h-5 w-5 text-primary" />
+		<h2 class="text-3xl font-bold text-foreground">About</h2>
+	</div>
 
-	<Card class="border-zinc-800 bg-zinc-900/30 p-6">
-		<div class="space-y-4 leading-relaxed text-zinc-300">
+	<div class="grid gap-8 md:grid-cols-[1fr_280px]">
+		<div class="space-y-5 text-base leading-relaxed text-muted-foreground">
 			<p>
 				I'm a bioengineering student at the <a
 					href="https://www.upenn.edu"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="text-zinc-100 hover:underline">University of Pennsylvania</a
+					class="font-medium text-foreground underline decoration-primary/50 underline-offset-4 hover:decoration-primary"
+					>University of Pennsylvania</a
 				>, currently exploring the intersection of technology and healthcare.
 			</p>
 			<p>
-				My interests lie in <span class="text-zinc-100">AI/ML</span>,
-				<span class="text-zinc-100">neuroscience</span>, and
-				<span class="text-zinc-100">prosthetics</span> — I believe these fields will shape the future
-				of human health and capability.
+				My interests lie in <span class="font-medium text-accent">AI/ML</span>,
+				<span class="font-medium text-primary">neuroscience</span>, and
+				<span class="font-medium text-neon-pink">prosthetics</span> — I believe these fields will shape
+				the future of human health and capability.
 			</p>
 			<p>
 				When I'm not studying or coding, you can find me working on personal projects, reading about
@@ -119,112 +120,86 @@
 			</p>
 		</div>
 
-		<div class="mt-6 flex flex-wrap gap-2">
-			<Badge variant="secondary" class="bg-zinc-800 text-zinc-300 hover:bg-zinc-700">AI/ML</Badge>
-			<Badge variant="secondary" class="bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
-				>Bioengineering</Badge
-			>
-			<Badge variant="secondary" class="bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
-				>Neuroscience</Badge
-			>
-			<Badge variant="secondary" class="bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
-				>Web Development</Badge
-			>
-			<Badge variant="secondary" class="bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
-				>Prosthetics</Badge
-			>
+		<div class="h-fit rounded-xl border border-border/60 bg-card/50 p-5 backdrop-blur-sm">
+			<h3 class="mb-3 font-mono text-sm font-medium text-muted-foreground uppercase">Stack</h3>
+			<div class="flex flex-wrap gap-2">
+				{#each skills as skill}
+					<Badge
+						variant="secondary"
+						class="bg-secondary/70 text-secondary-foreground transition-colors hover:bg-primary/20 hover:text-primary"
+					>
+						{skill}
+					</Badge>
+				{/each}
+			</div>
 		</div>
-	</Card>
+	</div>
 </section>
 
-<Separator class="mx-auto max-w-3xl bg-zinc-800/50" />
+<Separator class="mx-auto max-w-5xl bg-border/50" />
 
 <!-- Projects Section -->
-<section id="projects" class="mx-auto max-w-3xl scroll-mt-20 px-6 py-16">
-	<h2 class="mb-6 text-2xl font-semibold text-zinc-100">Some GitHub Projects</h2>
+<section id="projects" class="mx-auto max-w-5xl scroll-mt-24 px-6 py-20">
+	<div class="mb-8 flex items-center gap-3">
+		<GithubIcon class="h-5 w-5 text-primary" />
+		<h2 class="text-3xl font-bold text-foreground">Projects</h2>
+	</div>
 
 	{#if projects.length === 0}
-		<Card class="border-zinc-800 bg-zinc-900/30 p-6 text-center">
-			<p class="text-zinc-400">
-				No projects to show yet. Edit <code class="text-zinc-300">src/lib/data.ts</code> to add your featured
-				repos.
+		<div class="rounded-xl border border-border/60 bg-card/50 p-8 text-center">
+			<p class="text-muted-foreground">
+				No projects to show yet. Edit <code class="text-foreground">src/lib/data.ts</code> to add your
+				featured repos.
 			</p>
-		</Card>
+		</div>
 	{:else}
-		<div class="grid gap-4 md:grid-cols-2">
-			{#each projects as project}
-				<Card class="border-zinc-800 bg-zinc-900/30 p-5 transition-colors hover:bg-zinc-900/50">
-					<div class="flex h-full flex-col">
-						<div class="mb-2 flex items-start justify-between">
-							<a
-								href={project.url}
-								target="_blank"
-								rel="noopener noreferrer"
-								class="text-lg font-medium text-zinc-100 transition-colors hover:text-white"
-							>
-								{project.name}
-							</a>
-							{#if project.stars && project.stars > 0}
-								<Badge variant="secondary" class="bg-zinc-800 text-zinc-400">
-									★ {project.stars}
-								</Badge>
-							{/if}
-						</div>
-						<p class="mb-3 flex-grow text-sm text-zinc-400">{project.description}</p>
-						<div class="flex items-center gap-4 text-sm">
-							{#if project.language}
-								<span class="text-zinc-500">{project.language}</span>
-							{/if}
-							<a
-								href={project.url}
-								target="_blank"
-								rel="noopener noreferrer"
-								class="inline-flex items-center gap-1 text-zinc-400 transition-colors hover:text-zinc-200"
-							>
-								View on GitHub
-								<svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-									<path
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										stroke-width="2"
-										d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-									/>
-								</svg>
-							</a>
-						</div>
-					</div>
-				</Card>
+		<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+			{#each projects as project, i}
+				<ProjectCard {project} index={i} />
 			{/each}
 		</div>
 	{/if}
+
+	<div class="mt-16 grid gap-8 lg:grid-cols-[1fr_320px]">
+		<div></div>
+		<div class="rounded-xl border border-border/60 bg-card/50 p-5 backdrop-blur-sm">
+			<GitHubActivity />
+		</div>
+	</div>
 </section>
 
-<Separator class="mx-auto max-w-3xl bg-zinc-800/50" />
+<Separator class="mx-auto max-w-5xl bg-border/50" />
 
 <!-- Updates Section -->
-<section id="updates" class="mx-auto max-w-3xl scroll-mt-20 px-6 py-16">
-	<h2 class="mb-6 text-2xl font-semibold text-zinc-100">Updates</h2>
+<section id="updates" class="mx-auto max-w-5xl scroll-mt-24 px-6 py-20">
+	<div class="mb-8 flex items-center gap-3">
+		<Newspaper class="h-5 w-5 text-primary" />
+		<h2 class="text-3xl font-bold text-foreground">Updates</h2>
+	</div>
 
 	{#if blogPosts.length === 0}
-		<Card class="border-zinc-800 bg-zinc-900/30 p-6 text-center">
-			<p class="text-zinc-400">
-				No updates yet. Edit <code class="text-zinc-300">src/lib/data.ts</code> to add blog posts.
+		<div class="rounded-xl border border-border/60 bg-card/50 p-8 text-center">
+			<p class="text-muted-foreground">
+				No updates yet. Edit <code class="text-foreground">src/lib/data.ts</code> to add blog posts.
 			</p>
-		</Card>
+		</div>
 	{:else}
-		<div class="space-y-4">
-			{#each blogPosts as post}
-				<Card class="border-zinc-800 bg-zinc-900/30 p-5 transition-colors hover:bg-zinc-900/50">
-					<a href="/updates/{post.slug}" class="block">
-						<div class="mb-2 flex items-start justify-between">
-							<h3 class="text-lg font-medium text-zinc-100 transition-colors hover:text-white">
-								{post.title}
-							</h3>
-							<span class="text-sm text-zinc-500">{post.date}</span>
-						</div>
-						<p class="text-sm text-zinc-400">{post.excerpt}</p>
-					</a>
-				</Card>
+		<div class="grid gap-4">
+			{#each [...blogPosts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()) as post}
+				<a
+					href="/updates/{post.slug}"
+					class="group block rounded-xl border border-border/60 bg-card/50 p-5 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-card/70"
+				>
+					<div class="mb-2 flex items-start justify-between">
+						<h3
+							class="font-mono text-lg font-semibold text-card-foreground transition-colors group-hover:text-primary"
+						>
+							{post.title}
+						</h3>
+						<span class="shrink-0 text-xs text-muted-foreground">{post.date}</span>
+					</div>
+					<p class="text-sm text-muted-foreground">{post.excerpt}</p>
+				</a>
 			{/each}
 		</div>
 	{/if}
